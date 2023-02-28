@@ -2,10 +2,6 @@ import dynamic from 'next/dynamic'
 
 const Blob = dynamic(() => import('@/components/canvas/Blob'), { ssr: false })
 
-export default function Page(props) {}
+export default function BlobPage() {}
 
-Page.canvas = (props) => <Blob route='/' position-y={-0.75} />
-
-export async function getStaticProps() {
-  return { props: { title: 'Blob' } }
-}
+Page.canvas = () => <Blob route='/' position-y={-0.75} />
