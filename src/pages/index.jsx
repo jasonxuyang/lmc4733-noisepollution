@@ -1,5 +1,7 @@
 import dynamic from 'next/dynamic'
-import Instructions from '@/components/dom/Instructions'
+import useAudio from '../hooks/useAudio'
+import useAnimationFrame from '../hooks/useAnimationFrame'
+import { useState, useRef } from 'react'
 
 // Dynamic import is used to prevent a payload when the website starts, that includes threejs, r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -9,12 +11,20 @@ const Logo = dynamic(() => import('@/components/canvas/Logo'), { ssr: false })
 
 // Dom components go here
 export default function Page(props) {
+  const { audioContext, audioElement, analyser, source, playAudio, pauseAudio, getByteFrequencyData } =
+    useAudio('audio/relaxing_forest.mp3')
+  const test = useRef(0)
+
+  // useAnimationFrame(() => {
+  //   test.current = getByteFrequencyData()[0]
+  //   console.log(test.current)
+  // })
+
   return (
-    <Instructions>
-      This is a minimal starter for Nextjs + React-three-fiber and Threejs. Click on the{' '}
-      <span className='text-cyan-200'>atoms nucleus</span> to navigate to the{' '}
-      <span className='text-green-200'>/blob</span> page. OrbitControls are enabled by default.
-    </Instructions>
+    <div>
+      <div onClick={playAudio}>Play</div>
+      <div onClick={pauseAudio}>Pause</div>
+    </div>
   )
 }
 
