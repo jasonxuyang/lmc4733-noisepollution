@@ -11,7 +11,7 @@ const usePositionalAudio = (src: string) => {
   useEffect(() => {
     sound.current.setBuffer(buffer)
     sound.current.setRefDistance(1)
-    sound.current.setLoop(1)
+    sound.current.setLoop(true)
     camera.add(listener)
     return () => {
       camera.remove(listener)
