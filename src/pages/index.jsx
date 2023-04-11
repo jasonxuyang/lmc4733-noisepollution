@@ -13,7 +13,7 @@ export default function HomePage() {
   const { isPlaying } = state
   return (
     <div
-      class='p-6 m-6 text-black bg-white cursor-pointer w-fit'
+      className='p-6 m-6 text-black bg-white cursor-pointer w-fit'
       onClick={() => {
         dispatch(toggleAudio())
       }}>

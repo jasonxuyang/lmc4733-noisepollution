@@ -1,5 +1,5 @@
-import { useState, useRef, Suspense, useEffect } from 'react'
-import { useCursor, MeshDistortMaterial, PositionalAudio } from '@react-three/drei'
+import { useState, useRef, useEffect } from 'react'
+import { Points, PositionalAudio } from '@react-three/drei'
 import { rgbToHex } from '@/helpers/utils'
 import useAnalyser from '@/hooks/useAnalyser'
 import { useFrame } from '@react-three/fiber'
@@ -8,26 +8,30 @@ import usePositionalAudio from '@/hooks/usePositionalAudio'
 import * as random from 'maath/random'
 import * as buffer from 'maath/buffer'
 import * as misc from 'maath/misc'
-import { Points } from '@react-three/drei'
-import { Group, Quaternion, Vector3 } from 'three'
-import { pauseAudio, useGlobalState } from '@/hooks/useGlobalState'
+import { useGlobalState } from '@/hooks/useGlobalState'
+import { Vector3, Quaternion } from 'three'
 
-export default function Particle({ src, ...props }) {
-  const pointsRef = useRef<THREE.Points>(null!)
+const DENSITY = 10_000
+const PARTICLE_POINTS_SIZE = 0.2
+const ROTATION_FACTOR = 3
+const DEFAULT_FFT_SIZE = 32
+const MIN_SIZE = 0
+const MAX_SIZE = 10
+
+export default function Particle({ src, fftSize, ...props }) {
+  const pointsRef = useRef<typeof Points>(null!)
   const [color, setColor] = useState('hotpink')
-  const [size, setSize] = useState(5)
+  const [size, setSize] = useState(MIN_SIZE)
   const { sound, playAudio, pauseAudio } = usePositionalAudio('audio/relaxing_forest.mp3')
   const { state } = useGlobalState()
-  const { getFrequencyData } = useAnalyser(sound, 128)
-  const [{ sphere1, sphere2, final }] = useState(() => {
-    const sphere1 = random.inSphere(new Float32Array(10_000), { radius: size })
-    const sphere2 = random.inSphere(new Float32Array(10_000), { radius: size })
-    const final = sphere1.slice(0)
-    return { sphere1, sphere2, final }
+  const { getAverageFrequency } = useAnalyser(sound, fftSize ?? DEFAULT_FFT_SIZE)
+
+  const [{ sphere, final }] = useState(() => {
+    const sphere = random.inSphere(new Float32Array(DENSITY), { radius: 5 })
+    const final = sphere.slice(0)
+    return { sphere, final }
   })
   const { isPlaying } = state
-  const rotationAxis = new Vector3(0, 1, 0).normalize()
-  const q = new Quaternion()
 
   useEffect(() => {
     if (isPlaying) {
@@ -43,28 +47,35 @@ export default function Particle({ src, ...props }) {
   })
 
   const mapAudioToVisual = () => {
-    const data = getFrequencyData()
-    const dataIndex = 10
-    setColor(rgbToHex(data[dataIndex] * 5, data[dataIndex] * 5, 0))
-    setSize(data[dataIndex] / 100 === 0 ? 0 : data[dataIndex] / 100)
+    const data = getAverageFrequency()
+    const rgbVal = misc.remap(data, [0, fftSize ?? DEFAULT_FFT_SIZE], [0, 255])
+    const sizeVal = misc.remap(data, [0, fftSize ?? DEFAULT_FFT_SIZE], [MIN_SIZE, MAX_SIZE])
+    setColor(rgbToHex(rgbVal, rgbVal, 0))
+    setSize(sizeVal)
   }
 
+  const rotationAxis = new Vector3(1, 1, 0).normalize()
+  const q = new Quaternion()
+
   const animateParticle = (clock: any) => {
-    const t2 = misc.remap(Math.sin(clock.getElapsedTime()), [-1, 1], [0, 1])
+    const newSphere = sphere.slice(0).map((particle) => particle * size)
+    const tRotation = clock.getElapsedTime() * ROTATION_FACTOR
 
     if (isPlaying) {
+      buffer.lerp(sphere, newSphere, final, 1)
       buffer.rotate(final, {
-        q: q.setFromAxisAngle(rotationAxis, t2 * 0.1),
+        q: q.setFromAxisAngle(rotationAxis, tRotation),
       })
-      buffer.lerp(sphere1, sphere2, final, size * 2)
     }
   }
 
   return (
     <group {...props}>
-      <Points positions={final as Float32Array} stride={3} ref={pointsRef}>
-        <pointsMaterial size={0.1} color={color} />
+      {/* @ts-expect-error */}
+      <Points positions={final as Float32Array} stride={2} ref={pointsRef}>
+        <pointsMaterial size={PARTICLE_POINTS_SIZE} color={color} />
       </Points>
+      {/* @ts-expect-error */}
       <PositionalAudio url={src} ref={sound} />
     </group>
   )
