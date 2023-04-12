@@ -10,7 +10,7 @@ export function playAudio(): Action {
   return { type: Actions.PLAY }
 }
 export function pauseAudio(): Action {
-  return { type: Actions.PLAY }
+  return { type: Actions.PAUSE }
 }
 export function toggleAudio(): Action {
   return { type: Actions.TOGGLE }

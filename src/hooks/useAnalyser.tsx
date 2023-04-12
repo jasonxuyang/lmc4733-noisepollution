@@ -6,9 +6,11 @@ export default function useAnalyser(sound: RefObject<any>, fftSize: number) {
   useEffect(() => void (analyser.current = new AudioAnalyser(sound.current, fftSize)), [])
 
   const getFrequencyData = () => {
+    if (!analyser.current) return
     return analyser.current.getFrequencyData()
   }
   const getAverageFrequency = () => {
+    if (!analyser.current) return
     return analyser.current.getAverageFrequency()
   }
 

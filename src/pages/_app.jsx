@@ -1,10 +1,11 @@
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
-import Header from '@/config'
-import Layout from '@/components/dom/Layout'
-import '@/styles/index.css'
+import Header from '../config'
+import Layout from '../components/dom/Layout'
+import '../styles/index.css'
+import Nav from '../components/dom/Nav'
 
-const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: true })
+const Scene = dynamic(() => import('../components/canvas/Scene'), { ssr: true })
 
 export default function App({ Component, pageProps = { title: 'index' } }) {
   const ref = useRef()
@@ -22,7 +23,8 @@ export default function App({ Component, pageProps = { title: 'index' } }) {
             </Scene>
           )}
         </div>
-        <div className='absolute top-0 left-0 z-10'>
+        <div className='absolute top-0 left-0 z-10 m-6'>
+          <Nav />
           <Component {...pageProps} />
         </div>
       </Layout>
