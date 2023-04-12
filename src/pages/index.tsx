@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic'
-import Particle from '@/components/canvas/Particle'
 import React from 'react'
 
 // // Dynamic import is used to prevent a payload when the website starts, that includes threejs, r3f etc..
