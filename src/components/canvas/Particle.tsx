@@ -12,11 +12,11 @@ import { useGlobalState } from '../../hooks/useGlobalState'
 import { Vector3, Quaternion } from 'three'
 
 const DENSITY = 10_000
-const PARTICLE_POINTS_SIZE = 0.2
+const PARTICLE_POINTS_SIZE = 0.1
 const ROTATION_FACTOR = 3
 const DEFAULT_FFT_SIZE = 32
 const MIN_SIZE = 0
-const MAX_SIZE = 10
+const MAX_SIZE = 5
 const DEFAULT_DIRECTION = new Vector3(1, 1, 1)
 
 export default function Particle({ src, ...props }) {
@@ -29,7 +29,7 @@ export default function Particle({ src, ...props }) {
   const { getAverageFrequency } = useAnalyser(sound, DEFAULT_FFT_SIZE)
 
   const [{ sphere, final }] = useState(() => {
-    const sphere = random.inSphere(new Float32Array(DENSITY), { radius: 5 })
+    const sphere = random.inSphere(new Float32Array(DENSITY), { radius: (MIN_SIZE + MAX_SIZE) / 2 })
     const final = sphere.slice(0)
     return { sphere, final }
   })
