@@ -43,6 +43,7 @@ export default function Nav() {
       )}
       {pages.map((pageData) => (
         <div
+          key={pageData.label}
           className={`cursor-pointer hover:underline ${currentPage === pageData.url ? 'text-yellow-300' : ''}`}
           onClick={() => goToRoom(pageData.url)}>
           {pageData.label}
