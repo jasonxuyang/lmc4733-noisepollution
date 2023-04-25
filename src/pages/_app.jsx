@@ -18,21 +18,21 @@ export default function App({ Component, pageProps = { title: 'index' } }) {
         {/* The canvas can either be in front of the dom or behind. If it is in front it can overlay contents.
          * Setting the event source to a shared parent allows both the dom and the canvas to receive events.
          * Since the event source is now shared, the canvas would block events, we prevent that with pointerEvents: none. */}
-        <div className='absolute top-0 left-0 z-0 w-full h-full pointer-events-none'>
+        <div className="absolute top-0 left-0 z-0 w-full h-full pointer-events-none">
           {Component?.canvas && (
-            <Scene eventSource={ref} eventPrefix='client'>
+            <Scene eventSource={ref} eventPrefix="client">
               <Component.canvas pageProps={pageProps} scroll={scroll} />
             </Scene>
           )}
         </div>
         <div
-          className='absolute top-0 left-0 z-10 w-full h-full px-4 py-16 m-6 overflow-scroll'
+          className="absolute top-0 left-0 z-10 w-full h-full px-8 overflow-scroll"
           onScroll={(e) => {
-            scroll.current = e.target.scrollTop / (e.target.scrollHeight - window.innerHeight)
+            scroll.current = e.target.scrollTop / e.target.scrollHeight
           }}>
           <Component {...pageProps} scroll={scroll} />
         </div>
-        <div className='absolute top-0 left-0 z-10 '>
+        <div className="absolute top-0 left-0 z-10 ">
           <Nav />
         </div>
       </Layout>

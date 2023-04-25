@@ -3,14 +3,22 @@ import { useFrame } from '@react-three/fiber'
 import Particle from './Particle'
 import { RefObject, useEffect, useRef } from 'react'
 
-const RADIUS = 50
+const RADIUS = 200
 const CX = 0
 const CY = 0
 
 const positionInCircle = (index, total, scroll) => {
-  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll))
-  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll))
+  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.005))
+  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.005))
   return { x, y }
+}
+const positionInSection = (scroll, sectionCount) => {
+  const percentage = 100 / sectionCount
+  return ((scroll * 100) % percentage) / percentage
+}
+
+const map = (number, inMin, inMax, outMin, outMax) => {
+  return ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
 }
 
 export type RoomProps = {
@@ -18,15 +26,19 @@ export type RoomProps = {
   audioFiles: string[]
 }
 
-export default function Room({ scroll, audioFiles }) {
-  const group = useRef(null)
+export default function Room({ scroll, audioFiles }: RoomProps) {
+  const particles = useRef(null)
+  const camera = useRef(null)
 
   useFrame(() => {
-    group.current.children.forEach((child, index) => {
+    particles.current.children.forEach((child, index) => {
       const position = positionInCircle(index, 4, scroll.current)
       child.position.x = position.x
       child.position.z = position.y
     })
+    const cameraPosition =
+      RADIUS * -Math.abs(map(positionInSection(scroll.current, audioFiles.length), 0, 1, -0.9, 0.9))
+    camera.current.position.z = cameraPosition
   })
 
   const renderParticles = () => {
@@ -37,16 +49,16 @@ export default function Room({ scroll, audioFiles }) {
 
   return (
     <group>
-      <group ref={group}>{renderParticles()}</group>
-
+      <group ref={particles}>{renderParticles()}</group>
       <PerspectiveCamera
+        position={[0, 0, 0]}
         makeDefault
         fov={75}
         rotation={[0, 0, 0]}
-        position={[0, 0, 0]}
         scale={[1, 1, 1]}
         up={[0, 1, 0]}
         zoom={1}
+        ref={camera}
       />
     </group>
   )

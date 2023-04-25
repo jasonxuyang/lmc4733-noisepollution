@@ -12,7 +12,7 @@ import { useGlobalState } from '../../hooks/useGlobalState'
 import { Vector3, Quaternion } from 'three'
 
 const DENSITY = 10_000
-const PARTICLE_POINTS_SIZE = 0.1
+const PARTICLE_POINTS_SIZE = 0.05
 const ROTATION_FACTOR = 3
 const DEFAULT_FFT_SIZE = 32
 const MIN_SIZE = 0
@@ -41,6 +41,7 @@ export default function Particle({ src, ...props }) {
     } else {
       pauseAudio()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying])
 
   useFrame(({ clock }) => {
