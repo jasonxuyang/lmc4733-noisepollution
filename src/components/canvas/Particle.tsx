@@ -100,14 +100,20 @@ export default function Particle({ src, ...props }) {
     let color = new Color()
     // color.lerpColors(MIN_COLOR, MAX_COLOR, rms)
     // setColor(color)
-    if (rms <= 0.4) {
+    if (rms <= 0.2) {
       // Interpolate between GREEN and YELLOW
-      const t = rms / 0.4
+      const t = rms / 0.2
       color = GREEN.clone().lerp(YELLOW, t)
-    } else {
-      // Interpolate between YELLOW and RED
-      const t = (rms - 0.6) / 0.6
+    } else if (rms <= 0.4) {
+      // Interpolate between yellow and orange
+      const t = rms / 0.4
+      color = YELLOW.clone().lerp(ORANGE, t)
+    } else if (rms <= 0.6) {
+      // Interpolate between orange and red
+      const t = rms / 0.6
       color = ORANGE.clone().lerp(RED, t)
+    } else {
+      color = RED
     }
     setColor(color)
   }
