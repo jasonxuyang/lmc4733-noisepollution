@@ -75,10 +75,10 @@ const renderRoomData = () => {
   })
 }
 
-export default function Industrial({ scroll, ref }) {
+export default function Ocean({ scroll, ref }) {
   return <>{renderRoomData()}</>
 }
 
-Industrial.canvas = ({ scroll }) => {
+Ocean.canvas = ({ scroll }) => {
   return <Room scroll={scroll} roomData={roomData} />
 }
