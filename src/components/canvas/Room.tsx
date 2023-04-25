@@ -8,8 +8,8 @@ const CX = 0
 const CY = 0
 
 const positionInCircle = (index, total, scroll) => {
-  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.004))
-  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.004))
+  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.005))
+  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.005))
   return { x, y }
 }
 const positionInSection = (scroll, sectionCount) => {
@@ -50,16 +50,9 @@ export default function Room({ scroll, audioFiles }: RoomProps) {
   return (
     <group>
       <group ref={particles}>{renderParticles()}</group>
-      <PerspectiveCamera
-        position={[0, 0, 0]}
-        makeDefault
-        fov={75}
-        rotation={[0, 0, 0]}
-        scale={[1, 1, 1]}
-        up={[0, 1, 0]}
-        zoom={1}
-        ref={camera}
-      />
+      <group ref={camera} position={[0, 0, 0]}>
+        <PerspectiveCamera makeDefault fov={75} rotation={[0, 0, 0]} scale={[1, 1, 1]} up={[0, 1, 0]} zoom={1} />
+      </group>
     </group>
   )
 }
