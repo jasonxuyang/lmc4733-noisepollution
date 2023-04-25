@@ -53,7 +53,7 @@ export default function Particle({ src, ...props }) {
         }
       }
     }
-    startIndex = startIndex % length
+    // startIndex = startIndex % length
     // console.log('idx', startIndex)
     for (let i = startIndex; i < endIndex; i++) {
       const sample = channelData[i]
@@ -70,7 +70,6 @@ export default function Particle({ src, ...props }) {
     if (Number.isNaN(rms)) {
       rms = 0.4
     }
-
     return rms
   }
 
@@ -90,21 +89,23 @@ export default function Particle({ src, ...props }) {
 
   const mapAudioToVisual = () => {
     const data = getAverageFrequency()
-    // const rgbVal = misc.remap(data, [0, DEFAULT_FFT_SIZE], [0, 255])
-    // setColor(rgbToHex(rgbVal, rgbVal, 0))
     const sizeVal = misc.remap(data, [0, DEFAULT_FFT_SIZE], [MIN_SIZE, MAX_SIZE])
     setSize(sizeVal)
     // get current position in audio
-    const currentTime = sound.current.context.currentTime
+    const audioDuration = sound.current.buffer.duration;
+    // console.log(audioDuration)
+    const audioPosition = audioDuration * (sound.current.context.currentTime / audioDuration);
+    // const framePosition = Math.floor(audioPosition * sampleRate);
+    // const currentTime = sound.current.context.currentTime
     const sampleRate = sound.current.buffer.sampleRate
-    const startIndex = Math.floor(currentTime * sampleRate)
+    const startIndex = Math.floor(audioPosition * sampleRate)
+    // console.log(startIndex)
     // calculate RMS over 1/60th of a second (Frame rate vs sample rate)
     const endIndex = startIndex + Math.floor(sampleRate / 60)
     const rms = getRMSAmplitude(sound.current.buffer, startIndex, endIndex)
     // console.log(rms)
+
     let color = new Color()
-    // color.lerpColors(MIN_COLOR, MAX_COLOR, rms)
-    // setColor(color)
     if (rms <= 0.4) {
       // Interpolate between yellow and orange
       const t = rms / 0.4
