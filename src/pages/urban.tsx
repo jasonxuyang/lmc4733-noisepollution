@@ -63,7 +63,7 @@ const renderRoomData = () => {
   })
 }
 
-export default function Urban({ scroll, ref }) {
+export default function Urban() {
   return <>{renderRoomData()}</>
 }
 

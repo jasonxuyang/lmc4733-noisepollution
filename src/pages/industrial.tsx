@@ -108,7 +108,7 @@ const renderRoomData = () => {
   })
 }
 
-export default function Industrial({ scroll, ref }) {
+export default function Industrial() {
   return <>{renderRoomData()}</>
 }
 

@@ -14,9 +14,10 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Ocean noise refers to sounds made by human activities that can interfere with or obscure the ability of marine animals to hear natural sounds in the ocean.
-          Ships, oil drills, sonar devices, and seismic tests have made the once tranquil marine environment loud and chaotic
-          Noise pollution both in and around water disrupts biodiversity and the health of marine life.
+          Ocean noise refers to sounds made by human activities that can interfere with or obscure the ability of marine
+          animals to hear natural sounds in the ocean. Ships, oil drills, sonar devices, and seismic tests have made the
+          once tranquil marine environment loud and chaotic Noise pollution both in and around water disrupts
+          biodiversity and the health of marine life.
         </p>
       </>
     ),
@@ -27,11 +28,14 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Some of the main sources of underwater noise pollution are marine vessels, seismic surveys that involve blasting louds sounds into the ocean to map the sea floor, sonar, construction and underwater operations such as deep-sea mining, and oil and gas extraction and processing.
-          Military sonar can reach volumes of more than 200 dB, while seismic air guns can reach up to 250 dB. The force of these vibrations is enough to kill zooplankton.
-          Technology can help us manage noise. For example, modifying and retrofitting propellers or using bubble curtains around pile driving and construction.
-          We also know that operational measures such as slowing down ships can reduce noise output.
-          While technology helps, critical or sensitive habitats should be off-limits to intense noise generating activities.
+          Some of the main sources of underwater noise pollution are marine vessels, seismic surveys that involve
+          blasting louds sounds into the ocean to map the sea floor, sonar, construction and underwater operations such
+          as deep-sea mining, and oil and gas extraction and processing. Military sonar can reach volumes of more than
+          200 dB, while seismic air guns can reach up to 250 dB. The force of these vibrations is enough to kill
+          zooplankton. Technology can help us manage noise. For example, modifying and retrofitting propellers or using
+          bubble curtains around pile driving and construction. We also know that operational measures such as slowing
+          down ships can reduce noise output. While technology helps, critical or sensitive habitats should be
+          off-limits to intense noise generating activities.
         </p>
       </>
     ),
@@ -42,9 +46,11 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Whales and dolphins are particularly impacted by noise pollution. These marine mammals rely on echolocation to communicate, navigate, feed, and find mates, and excess noise interferes with their ability to effectively echolocate
-          Noise pollution affects whale behaviour, causing the marine mammals to feed less or to produce fewer calls.
-          Shipping noise also cause whales to become stressed, with the build-up of stress related chemicals linked to growth suppression, lower fertility and poor immune system function.
+          Whales and dolphins are particularly impacted by noise pollution. These marine mammals rely on echolocation to
+          communicate, navigate, feed, and find mates, and excess noise interferes with their ability to effectively
+          echolocate Noise pollution affects whale behaviour, causing the marine mammals to feed less or to produce
+          fewer calls. Shipping noise also cause whales to become stressed, with the build-up of stress related
+          chemicals linked to growth suppression, lower fertility and poor immune system function.
         </p>
       </>
     ),
@@ -55,13 +61,14 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Orcas are particularly at risk from noise pollution because the rely on sound to navigate and hunt.
-          Although they are called killer whales, orcas are related to dolphins and are highly social mammals that live in maternal pods and hunt cooperatively.
-          How loud is an orca whale? The energy of burst-pulse sounds usually lies between 500 Hz and 25 kHz with levels between 130 and 176 dB.
+          Orcas are particularly at risk from noise pollution because the rely on sound to navigate and hunt. Although
+          they are called killer whales, orcas are related to dolphins and are highly social mammals that live in
+          maternal pods and hunt cooperatively. How loud is an orca whale? The energy of burst-pulse sounds usually lies
+          between 500 Hz and 25 kHz with levels between 130 and 176 dB.
         </p>
       </>
     ),
-  }
+  },
 ]
 
 const renderRoomData = () => {
@@ -75,7 +82,7 @@ const renderRoomData = () => {
   })
 }
 
-export default function Ocean({ scroll, ref }) {
+export default function Ocean() {
   return <>{renderRoomData()}</>
 }
 
