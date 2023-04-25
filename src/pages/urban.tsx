@@ -23,20 +23,6 @@ const roomData: ParticleData[] = [
     ),
   },
   {
-    src: 'audio/Train_Approach_n_Pass-Mike_Koenig-678807208.wav',
-    title: 'Trains',
-    content: (
-      <>
-        <p>
-          The noise level from all types of trains is higher than 65 dB. One of the lesser-known hazards of rail
-          transport is the kind of noise pollution nobody can hear. Inaudible, low frequency ground vibrations emanate
-          from the rolling stock on the railway as it passes. these vibrations can have a detrimental effect on peoples
-          health, causing headaches, fatigue and even irritability in people experiencing them
-        </p>
-      </>
-    ),
-  },
-  {
     src: 'audio/Large_Stadium-stephan_schutze-2122836113.wav',
     title: 'Stadiums and Concerts',
     content: (
