@@ -8,8 +8,8 @@ const CX = 0
 const CY = 0
 
 const positionInCircle = (index, total, scroll) => {
-  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.005))
-  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.005))
+  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.004))
+  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.004))
   return { x, y }
 }
 const positionInSection = (scroll, sectionCount) => {
