@@ -12,6 +12,7 @@ const CY = 0
 const positionInCircle = (index, total, scroll) => {
   let offset = 0
   if (total > 4) offset = 1 / (total * 2)
+  if (total === 3) offset = 0.25
   const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.005 - offset))
   const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.005 - offset))
   return { x, y }
