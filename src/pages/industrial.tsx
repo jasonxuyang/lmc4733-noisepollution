@@ -11,5 +11,5 @@ export default function Industrial() {
 }
 
 Industrial.canvas = () => {
-  return <Particle src='audio/ambient_city.mp3' />
+  return <Particle src='audio/Train_Approach_n_Pass-Mike_Koenig-678807208.wav' />
 }
