@@ -18,11 +18,13 @@ const usePositionalAudio = (src: string) => {
     }
   }, [])
 
-  const playAudio = () => {
+  const playAudio = async () => {
+    await sound.current.context.resume()
     sound.current.play()
   }
 
-  const pauseAudio = () => {
+  const pauseAudio = async () => {
+    await sound.current.context.suspend()
     sound.current.pause()
   }
 
