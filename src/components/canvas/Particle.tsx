@@ -53,7 +53,8 @@ export default function Particle({ src, ...props }) {
         }
       }
     }
-
+    startIndex = startIndex % length
+    console.log('idx', startIndex)
     for (let i = startIndex; i < endIndex; i++) {
       const sample = channelData[i]
       rms += sample * sample
@@ -65,6 +66,9 @@ export default function Particle({ src, ...props }) {
 
     if (max > 0) {
       rms /= max
+    }
+    if (Number.isNaN(rms)) {
+      rms = 0.4
     }
 
     return rms
@@ -97,14 +101,11 @@ export default function Particle({ src, ...props }) {
     // calculate RMS over 1/60th of a second (Frame rate vs sample rate)
     const endIndex = startIndex + Math.floor(sampleRate / 60)
     const rms = getRMSAmplitude(sound.current.buffer, startIndex, endIndex)
+    console.log(rms)
     let color = new Color()
     // color.lerpColors(MIN_COLOR, MAX_COLOR, rms)
     // setColor(color)
-    if (rms <= 0.2) {
-      // Interpolate between GREEN and YELLOW
-      const t = rms / 0.2
-      color = GREEN.clone().lerp(YELLOW, t)
-    } else if (rms <= 0.4) {
+    if (rms <= 0.4) {
       // Interpolate between yellow and orange
       const t = rms / 0.4
       color = YELLOW.clone().lerp(ORANGE, t)
@@ -112,8 +113,12 @@ export default function Particle({ src, ...props }) {
       // Interpolate between orange and red
       const t = rms / 0.6
       color = ORANGE.clone().lerp(RED, t)
-    } else {
+    } else if (rms > 0.6) {
       color = RED
+    } else {
+      // Interpolate between GREEN and YELLOW
+      const t = rms / 0.2
+      color = GREEN.clone().lerp(YELLOW, t)
     }
     setColor(color)
   }

@@ -6,5 +6,5 @@ import React from 'react'
 // // https://github.com/pmndrs/react-three-next/issues/49
 
 export default function HomePage() {
-  return <div>Home Page</div>
+  return <div>Noise Pollution</div>
 }
