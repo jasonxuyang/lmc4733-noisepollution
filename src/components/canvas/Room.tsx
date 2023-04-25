@@ -10,8 +10,10 @@ const CX = 0
 const CY = 0
 
 const positionInCircle = (index, total, scroll) => {
-  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.005))
-  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.005))
+  let offset = 0
+  if (total > 4) offset = 1 / (total * 2)
+  const x = CX + RADIUS * Math.cos(2 * Math.PI * (index / total + scroll + 0.005 - offset))
+  const y = CY + RADIUS * Math.sin(2 * Math.PI * (index / total + scroll + 0.005 - offset))
   return { x, y }
 }
 const positionInSection = (scroll, sectionCount) => {
@@ -34,7 +36,7 @@ export default function Room({ scroll, roomData }: RoomProps) {
 
   useFrame(() => {
     particles.current.children.forEach((child, index) => {
-      const position = positionInCircle(index, 4, scroll.current)
+      const position = positionInCircle(index, roomData.length, scroll.current)
       child.position.x = position.x
       child.position.z = position.y
     })
@@ -43,7 +45,7 @@ export default function Room({ scroll, roomData }: RoomProps) {
   })
 
   const renderParticles = () => {
-    return roomData.map((data, index) => {
+    return roomData.map((data) => {
       if (!data.src) return
       else return <Particle key={data.src} src={data.src} />
     })
