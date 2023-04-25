@@ -47,18 +47,17 @@ export default function Industrial({ scroll, ref }) {
         </p>
       </div>
       <div className="flex flex-col justify-center w-1/3 h-[100vh]">
-        <h2 className="mb-2 text-4xl">Sound 4</h2>
+        <h2 className="mb-2 text-4xl">Traffic</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          Traffic noise levels can range from 70-130 dB, and it is a leading cause of noise pollution in urban areas.
+          Traffic noise causes sleep disruption, high cortisol levels, and higher levels of stress which leads to vascular dysfunction, hypertension, and inflammation.
+          Its better to address traffic noise in urban planning than to attempt to remedy it with noise pollution barriers.
         </p>
       </div>
     </div>
   )
 }
+
 
 Industrial.canvas = ({ scroll }) => {
   return <Room scroll={scroll} audioFiles={audio} />
