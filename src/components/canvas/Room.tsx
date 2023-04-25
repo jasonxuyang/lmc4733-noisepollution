@@ -2,7 +2,8 @@
 import { PerspectiveCamera } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import Particle from './Particle'
-import { RefObject, useEffect, useRef } from 'react'
+import { RefObject, useRef } from 'react'
+import { ParticleData } from '../../../types'
 
 const RADIUS = 200
 const CX = 0
@@ -24,10 +25,10 @@ const map = (number, inMin, inMax, outMin, outMax) => {
 
 export type RoomProps = {
   scroll: RefObject<number>
-  audioFiles: string[]
+  roomData: ParticleData[]
 }
 
-export default function Room({ scroll, audioFiles }: RoomProps) {
+export default function Room({ scroll, roomData }: RoomProps) {
   const particles = useRef(null)
   const camera = useRef(null)
 
@@ -37,14 +38,14 @@ export default function Room({ scroll, audioFiles }: RoomProps) {
       child.position.x = position.x
       child.position.z = position.y
     })
-    const cameraPosition =
-      RADIUS * -Math.abs(map(positionInSection(scroll.current, audioFiles.length), 0, 1, -0.9, 0.9))
+    const cameraPosition = RADIUS * -Math.abs(map(positionInSection(scroll.current, roomData.length), 0, 1, -0.9, 0.9))
     camera.current.position.z = cameraPosition
   })
 
   const renderParticles = () => {
-    return audioFiles.map((src) => {
-      return <Particle key={src} src={src} />
+    return roomData.map((data, index) => {
+      if (!data.src) return
+      else return <Particle key={data.src} src={data.src} />
     })
   }
 
