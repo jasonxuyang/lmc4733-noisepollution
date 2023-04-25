@@ -31,7 +31,7 @@ export default function Nav() {
   const currentPage = router.pathname
 
   return (
-    <div className='flex flex-row gap-x-4 items-center'>
+    <div className='flex flex-row items-center m-4 gap-x-4'>
       {currentPage !== Room.Home && (
         <div
           className='px-6 py-4 text-black bg-white cursor-pointer w-fit'

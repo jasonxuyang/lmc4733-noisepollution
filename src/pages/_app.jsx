@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import Header from '../config'
 import Layout from '../components/dom/Layout'
@@ -9,6 +9,8 @@ const Scene = dynamic(() => import('../components/canvas/Scene'), { ssr: true })
 
 export default function App({ Component, pageProps = { title: 'index' } }) {
   const ref = useRef()
+  const scroll = useRef(0)
+
   return (
     <>
       <Header title={pageProps.title} />
@@ -19,13 +21,19 @@ export default function App({ Component, pageProps = { title: 'index' } }) {
         <div className='absolute top-0 left-0 z-0 w-full h-full pointer-events-none'>
           {Component?.canvas && (
             <Scene eventSource={ref} eventPrefix='client'>
-              {Component.canvas(pageProps)}
+              <Component.canvas pageProps={pageProps} scroll={scroll} />
             </Scene>
           )}
         </div>
-        <div className='absolute top-0 left-0 z-10 m-6'>
+        <div
+          className='absolute top-0 left-0 z-10 w-full h-full px-4 py-16 m-6 overflow-scroll'
+          onScroll={(e) => {
+            scroll.current = e.target.scrollTop / (e.target.scrollHeight - window.innerHeight)
+          }}>
+          <Component {...pageProps} scroll={scroll} />
+        </div>
+        <div className='absolute top-0 left-0 z-10 '>
           <Nav />
-          <Component {...pageProps} />
         </div>
       </Layout>
     </>

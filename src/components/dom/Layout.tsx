@@ -1,7 +1,6 @@
 import React from 'react'
 import { GlobalStateProvider } from '../../hooks/useGlobalState'
 import { useRef, forwardRef, useImperativeHandle } from 'react'
-import Nav from './Nav'
 
 const Layout = forwardRef(({ children, ...props }: any, ref) => {
   const localRef = useRef()
@@ -10,7 +9,7 @@ const Layout = forwardRef(({ children, ...props }: any, ref) => {
 
   return (
     <GlobalStateProvider>
-      <div {...props} ref={localRef} className='relative w-screen h-screen overflow-hidden dom'>
+      <div {...props} ref={localRef}>
         {children}
       </div>
     </GlobalStateProvider>
