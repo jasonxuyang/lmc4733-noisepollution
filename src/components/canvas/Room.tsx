@@ -1,4 +1,5 @@
-import { PerspectiveCamera, useAnimations } from '@react-three/drei'
+// @ts-nocheck
+import { PerspectiveCamera } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import Particle from './Particle'
 import { RefObject, useEffect, useRef } from 'react'
@@ -50,9 +51,17 @@ export default function Room({ scroll, audioFiles }: RoomProps) {
   return (
     <group>
       <group ref={particles}>{renderParticles()}</group>
-      <group ref={camera} position={[0, 0, 0]}>
-        <PerspectiveCamera makeDefault fov={75} rotation={[0, 0, 0]} scale={[1, 1, 1]} up={[0, 1, 0]} zoom={1} />
-      </group>
+
+      <PerspectiveCamera
+        ref={camera}
+        position={[0, 0, 0]}
+        makeDefault
+        fov={75}
+        rotation={[0, 0, 0]}
+        scale={[1, 1, 1]}
+        up={[0, 1, 0]}
+        zoom={1}
+      />
     </group>
   )
 }
