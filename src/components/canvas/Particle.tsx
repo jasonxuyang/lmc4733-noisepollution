@@ -25,7 +25,7 @@ const ORANGE = new Color(0xf28500)
 
 export default function Particle({ src, ...props }) {
   const pointsRef = useRef<typeof Points>(null!)
-  const [color, setColor] = useState<string>('#000000')
+  const [color, setColor] = useState<any>(null)
   const [size, setSize] = useState<number>(MIN_SIZE)
   const [direction, setDirection] = useState<Vector3>(DEFAULT_DIRECTION)
   const { sound, playAudio, pauseAudio } = usePositionalAudio(src)
