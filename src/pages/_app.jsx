@@ -32,7 +32,7 @@ export default function App({ Component, pageProps = { title: 'index' } }) {
           }}>
           <Component {...pageProps} scroll={scroll} />
         </div>
-        <div className="absolute top-0 left-0 z-10 ">
+        <div className="absolute top-0 left-0 z-10 w-full">
           <Nav />
         </div>
       </Layout>

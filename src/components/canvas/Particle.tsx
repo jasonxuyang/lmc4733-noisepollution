@@ -54,7 +54,7 @@ export default function Particle({ src, ...props }) {
       }
     }
     startIndex = startIndex % length
-    console.log('idx', startIndex)
+    // console.log('idx', startIndex)
     for (let i = startIndex; i < endIndex; i++) {
       const sample = channelData[i]
       rms += sample * sample
@@ -101,7 +101,7 @@ export default function Particle({ src, ...props }) {
     // calculate RMS over 1/60th of a second (Frame rate vs sample rate)
     const endIndex = startIndex + Math.floor(sampleRate / 60)
     const rms = getRMSAmplitude(sound.current.buffer, startIndex, endIndex)
-    console.log(rms)
+    // console.log(rms)
     let color = new Color()
     // color.lerpColors(MIN_COLOR, MAX_COLOR, rms)
     // setColor(color)

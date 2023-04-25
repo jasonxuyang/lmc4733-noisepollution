@@ -14,11 +14,14 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Aircraft engines are the major source of noise and can exceed 140 dB during takeoff.
-          While airborne, the main sources of noise are the engines and the high speed turbulence over the fuselage.
-          Aircraft noise at high levels can be considered a stressor on the body, and research has found an association between high levels of aircraft noise and an increased risk of developing Cardiovascular disease.
-          Reports often indicated that children exposed to long term aircraft noise showed a higher degree of annoyance than those children from quieter areas.
-          Evidence suggests that children do not habituate to aircraft noise over time, and that an increase in noise can be correlated with a delay in reading comprehension compared to those children not exposed to high levels of aircraft noise.
+          Aircraft engines are the major source of noise and can exceed 140 dB during takeoff. While airborne, the main
+          sources of noise are the engines and the high speed turbulence over the fuselage. Aircraft noise at high
+          levels can be considered a stressor on the body, and research has found an association between high levels of
+          aircraft noise and an increased risk of developing Cardiovascular disease. Reports often indicated that
+          children exposed to long term aircraft noise showed a higher degree of annoyance than those children from
+          quieter areas. Evidence suggests that children do not habituate to aircraft noise over time, and that an
+          increase in noise can be correlated with a delay in reading comprehension compared to those children not
+          exposed to high levels of aircraft noise.
         </p>
       </>
     ),
@@ -29,10 +32,10 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          The noise level from all types of trains is higher than 65 dB.
-          One of the lesser-known hazards of rail transport is the kind of noise pollution nobody can hear.
-          Inaudible, low frequency ground vibrations emanate from the rolling stock on the railway as it passes.
-          these vibrations can have a detrimental effect on peoples health, causing headaches, fatigue and even irritability in people experiencing them
+          The noise level from all types of trains is higher than 65 dB. One of the lesser-known hazards of rail
+          transport is the kind of noise pollution nobody can hear. Inaudible, low frequency ground vibrations emanate
+          from the rolling stock on the railway as it passes. these vibrations can have a detrimental effect on peoples
+          health, causing headaches, fatigue and even irritability in people experiencing them
         </p>
       </>
     ),
@@ -43,9 +46,11 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Construction site noise is classed as neighborhood noise, which includes noise arising from industrial premises, construction sites and noise in the street.
-          Some sources of noise pollution on construction sites include loud machinery, vehicles, raised voices and physical work such as hammering, drilling or digging.
-          The wider effects of construction site noise pollution include structural damage to buildings, decreased property value, loss of productivity and social impacts such as sickness.
+          Construction site noise is classed as neighborhood noise, which includes noise arising from industrial
+          premises, construction sites and noise in the street. Some sources of noise pollution on construction sites
+          include loud machinery, vehicles, raised voices and physical work such as hammering, drilling or digging. The
+          wider effects of construction site noise pollution include structural damage to buildings, decreased property
+          value, loss of productivity and social impacts such as sickness.
         </p>
       </>
     ),
@@ -56,8 +61,8 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Construction noise pollution also has negative effects on biodiversity.
-          Because many animals rely on sounds to communicate, find food, or detect predators, man-made noise pollution endangers them by masking these sounds.
+          Construction noise pollution also has negative effects on biodiversity. Because many animals rely on sounds to
+          communicate, find food, or detect predators, man-made noise pollution endangers them by masking these sounds.
         </p>
       </>
     ),
@@ -68,10 +73,10 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Traffic noise levels can range from 70-130 dB.
-          Traffic is a leading cause of noise pollution in urban areas.
-          It is better to address traffic noise in urban planning than to attempt to remedy it with noise pollution barriers.
-          Traffic noise causes sleep disruption, high cortisol levels, and higher levels of stress which leads to vascular dysfunction, hypertension, and inflammation.
+          Traffic noise levels can range from 70-130 dB. Traffic is a leading cause of noise pollution in urban areas.
+          It is better to address traffic noise in urban planning than to attempt to remedy it with noise pollution
+          barriers. Traffic noise causes sleep disruption, high cortisol levels, and higher levels of stress which leads
+          to vascular dysfunction, hypertension, and inflammation.
         </p>
       </>
     ),
@@ -82,13 +87,14 @@ const roomData: ParticleData[] = [
     content: (
       <>
         <p>
-          Large vehicles like heavy trucks and diesel buses cause noise peaks ranging up to about 90 db.
-          One diesel bus or heavy truck produces the noise equivalent of over 32 automobiles
-          The sound power from a diesel bus or heavy truck is on the order of some 300 times greater than that of ambient street noise or that produce by an electric trolleybus
+          Large vehicles like heavy trucks and diesel buses cause noise peaks ranging up to about 90 db. One diesel bus
+          or heavy truck produces the noise equivalent of over 32 automobiles The sound power from a diesel bus or heavy
+          truck is on the order of some 300 times greater than that of ambient street noise or that produce by an
+          electric trolleybus
         </p>
       </>
     ),
-  }
+  },
 ]
 
 const renderRoomData = () => {
